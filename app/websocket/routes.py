@@ -12,17 +12,17 @@ REDIS_URL = "redis://localhost"
 
 @router.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    # user = await websocket_authenticate_user(websocket)
-    # await manager.connect(websocket, user_id = user.id)
-    await manager.connect(websocket)
+    user = await websocket_authenticate_user(websocket)
+    await manager.connect(websocket, user_id = user.id)
+    # await manager.connect(websocket)
     redis = await aioredis.from_url(REDIS_URL)
     connection_open = True
     try:
         while True:
             data = await websocket.receive_text()
-            # logger.info(f"[{user.username}] sent: {data}")
+            logger.info(f"[{user.username}] sent: {data}")
             await broadcast_ws_message(data)
-            # print(f"[{user.username}] sent: {data}")
+            print(f"[{user.username}] sent: {data}")
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         connection_open = False
