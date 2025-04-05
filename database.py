@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-DATABASE_URL = os.getenv("DATABASE_URL")
+# DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = 'postgres://postgres:2024@localhost:5432/Stream'
 
 TORTOISE_ORM = {
       "connections": {
