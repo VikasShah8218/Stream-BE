@@ -1,0 +1,11 @@
+# app/websocket/startup.py
+from fastapi import FastAPI
+from app.websocket.redis_pubsub import redis_subscriber
+import asyncio
+
+async def start_redis_listener(app: FastAPI):
+    app.state.redis_listener = asyncio.create_task(redis_subscriber())
+
+async def stop_redis_listener(app: FastAPI):
+    app.state.redis_listener.cancel()
+    await app.state.redis_listener
