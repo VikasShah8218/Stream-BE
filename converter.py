@@ -47,7 +47,7 @@ def convert_mkv_to_mp4(input_path, output_path=None):
 
 # Example usage
 if __name__ == "__main__":
-    input_file = "D:/Drive-1/Fast API/structure_1/1.mkv"  # Change to your file
+    input_file = "deadpool.mkv"  # Change to your file
     output_file = "output.mp4" # Optional
     
     try:
