@@ -44,3 +44,15 @@ async def broadcast_ws_message(message: str):
     redis = await aioredis.from_url(REDIS_URL)
     await redis.publish("broadcast", message)
     await redis.close()
+
+
+
+@router.websocket("/ws/signaling")
+async def signaling(websocket: WebSocket):
+    await manager.connect(websocket,1)
+    try:
+        while True:
+            data = await websocket.receive_json()
+            await manager.broadcast(data, sender=websocket)
+    except:
+        manager.disconnect(websocket)
