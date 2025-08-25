@@ -41,3 +41,7 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"message": "Hello from FastAPI with Tortoise ORM & PostgreSQL"}
+
+
+
+# fastapi dev main.py --host 192.168.1.111 --port 4500
