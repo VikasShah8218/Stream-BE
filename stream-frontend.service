@@ -1,0 +1,14 @@
+[Unit]
+Description=Stream Frontend React Service
+After=network.target
+
+[Service]
+User=kushalshiksha
+WorkingDirectory=/home/kushalshiksha/shah/Steream-FE
+ExecStart=/usr/bin/npm run dev -- --host 0.0.0.0 --port 4501
+Restart=always
+RestartSec=5
+Environment=PATH=/usr/bin:/usr/local/bin
+
+[Install]
+WantedBy=multi-user.target

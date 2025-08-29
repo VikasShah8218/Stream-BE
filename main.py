@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.home.views import router as home_router
 from contextlib import asynccontextmanager
 from database import init_db
+from app.accounts.models import User
 from fastapi import FastAPI
 import asyncio
 
@@ -39,8 +40,13 @@ app.add_middleware(
 )
 
 @app.get("/")
-def read_root():
+async def read_root():
     return {"message": "Hello from FastAPI with Tortoise ORM & PostgreSQL"}
+
+@app.get("/users")
+async def read_root():
+    users = await User.all()[:0]
+    return users
 
 
 

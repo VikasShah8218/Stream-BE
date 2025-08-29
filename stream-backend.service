@@ -1,0 +1,13 @@
+[Unit]
+Description=Stream Backend FastAPI Service
+After=network.target
+
+[Service]
+User=kushalshiksha
+WorkingDirectory=/home/kushalshiksha/shah/Stream-BE
+ExecStart=/bin/bash -c 'source venv/bin/activate && exec fastapi dev main.py --host 0.0.0.0 --port 4500'
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
